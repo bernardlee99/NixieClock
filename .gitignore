@@ -2,3 +2,8 @@ NixieTubePCB/History
 NixieTubePCB/Project\ Logs\ for\ NixieTubePCB
 NixieTubePCB/Project\ Outputs\ for\ NixieTubePCB
 NixieTubePCB/__Previews
+
+NixieLKM/*.o
+NixieLKM/*.ko
+NixieLKM/modules.order
+NixieLKM/*.mod.*

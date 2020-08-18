@@ -1,0 +1,5 @@
+config NIXIE_SPI
+	tristate "Nixie Module"
+	---help---
+	  A hacky way of interfacing with an array of Nixie Tube
+
