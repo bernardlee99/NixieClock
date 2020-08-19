@@ -1,0 +1,22 @@
+#!/bin/sh
+
+echo "GPIO & PWM Startup Test" 
+
+/boot-script/init-boot-led-gpio-test.sh
+
+/boot-script/init-boot-led.sh &
+
+modprobe nixie
+
+ifconfig wlan0 up
+wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_init.conf
+dhcpcd wlan0
+
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+kill $(pidof  {exe} ash /usr/bin/boot-script/init-boot-led.sh)
+
+/boot-script/init-boot-led-shut.sh
+
+echo "Init script completed!"
+
