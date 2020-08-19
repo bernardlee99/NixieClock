@@ -921,111 +921,144 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
+[Document53]
+DocumentPath=CAMtastic2.Cam
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for NixieTubePCB\Design Rule Check - NixieTubePCB.html
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.EXTREP
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB-RoundHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBL
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB-SlotHoles.TXT
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBO
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBP
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBS
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GKO
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM1
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM3
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM5
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM13
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM15
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM3
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM16
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM5
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM20
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM13
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM21
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM15
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM24
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM16
 DItemRevisionGUID=
 
 [GeneratedDocument17]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM32767
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM20
 DItemRevisionGUID=
 
 [GeneratedDocument18]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GP1
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM21
 DItemRevisionGUID=
 
 [GeneratedDocument19]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GP2
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM24
 DItemRevisionGUID=
 
 [GeneratedDocument20]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GPB
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GM32767
 DItemRevisionGUID=
 
 [GeneratedDocument21]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GPT
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GP1
 DItemRevisionGUID=
 
 [GeneratedDocument22]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTL
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GP2
 DItemRevisionGUID=
 
 [GeneratedDocument23]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTO
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GPB
 DItemRevisionGUID=
 
 [GeneratedDocument24]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTP
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GPT
 DItemRevisionGUID=
 
 [GeneratedDocument25]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTS
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument26]
-DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.REP
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument27]
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.REP
+DItemRevisionGUID=
+
+[GeneratedDocument31]
 DocumentPath=Project Outputs for NixieTubePCB\NixieTubePCB.RUL
 DItemRevisionGUID=
 
@@ -1255,6 +1288,10 @@ OutputName1=NC Drill Files
 OutputDocumentPath1=
 OutputVariantName1=
 OutputDefault1=0
+Configuration1_Name1=ForceUpdateSettings
+Configuration1_Item1=False
+Configuration1_Name2=OutputConfigurationParameter1
+Configuration1_Item2=BoardEdgeRoutToolDia=2000000|GenerateBoardEdgeRout=False|GenerateDrilledSlotsG85=False|GenerateEIADrillFile=False|GenerateSeparatePlatedNonPlatedFiles=False|NumberOfDecimals=5|NumberOfUnits=2|OptimizeChangeLocationCommands=True|OriginPosition=Relative|Record=DrillView|Units=Imperial|ZeroesMode=SuppressTrailingZeroes
 OutputType2=Mask
 OutputName2=Solder/Paste Mask Prints
 OutputDocumentPath2=
