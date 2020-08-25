@@ -1,0 +1,3 @@
+Record=TopLevelDocument|FileName=NixieTubePCB.SchDoc
+Record=SheetSymbol|SourceDocument=NixieTubePCB.SchDoc|Designator=U_Nixie|SchDesignator=U_Nixie|FileName=Nixie.SchDoc|SymbolType=Normal|RawFileName=Nixie.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
+Record=SheetSymbol|SourceDocument=NixieTubePCB.SchDoc|Designator=U_PowerSupply|SchDesignator=U_PowerSupply|FileName=PowerSupply.SchDoc|SymbolType=Normal|RawFileName=PowerSupply.SchDoc|DesignItemId= |SourceLibraryName= |ObjectKind=Sheet Symbol|RevisionGUID= |ItemGUID= |VaultGUID= 
