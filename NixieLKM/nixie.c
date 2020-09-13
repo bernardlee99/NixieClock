@@ -21,9 +21,19 @@ static int    numberOpens = 0;
 static struct class*  nixiecharClass  = NULL; 
 static struct device* nixiecharDevice = NULL; 
 
-static int spiOutputHr;
-static int spiOutputMin;
-int digitToHex(char input, int start);
+static int spi1 = 0;
+static int spi2 = 0;
+void setValue(int index, int value);
+
+int hr1Index[3] = {20, 21, 22};
+int hr0Index[10] = {14, 15, 16, 17, 18, 19, 24, 23, 12, 13};
+int min1Index[6] = {6, 7, 8, 9, 10, 11};
+int min0Index[10] = {31, 30, 29, 28, 27, 26, 25, 4, 5, 32};
+
+#define INDEX_HR1 1
+#define INDEX_HR0 2
+#define INDEX_MIN1 3
+#define INDEX_MIN0 4
 
 
 // The prototype functions for the character driver -- must come before the struct definition
@@ -50,7 +60,7 @@ static struct file_operations fops =
  */
 static int __init nixiechar_init(void){
 
-   printk(KERN_INFO "NixieChar: Initializing PD14 & PD15 communication bus\n");
+   printk(KERN_INFO "NixieChar: Initializing PC3, PC8, & PC11 communication bus\n");
    init_gpio();
    
    printk(KERN_INFO "NixieChar: Initializing the NixieChar LKM\n");
@@ -144,31 +154,31 @@ static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, lof
              
 
    if(len >= 3 && (buffer[2] == ':' || buffer[2] == ' ')){
-         int valueHr1 = digitToHex(buffer[0], 2);
-         int valueHr0 = digitToHex(buffer[1], 9);
-         int valueMin1 = digitToHex(buffer[3], 5);
-         int valueMin0 = digitToHex(buffer[4], 9);
+         int valueHr1 = (int)(buffer[0]) - 48;
+         int valueHr0 = (int)(buffer[1]) - 48;
+         int valueMin1 = (int)(buffer[3]) - 48;
+         int valueMin0 = (int)(buffer[4]) - 48;
          
-         spiOutputHr = 0;
-         spiOutputMin = 0;
+         spi1 = 0;
+         spi2 = 0;
 
-         spiOutputHr = spiOutputHr | (valueHr1 << 10);
-         printk(KERN_INFO "NixieChar: Output1: %x\n", spiOutputHr);
-         spiOutputHr = spiOutputHr | (valueHr0);
-         printk(KERN_INFO "NixieChar: Output2: %x\n", spiOutputHr);
-         spiOutputMin = spiOutputMin | (valueMin1 << 10);
-         spiOutputMin = spiOutputMin | (valueMin0);
+         setValue(INDEX_HR1, valueHr1);
+         setValue(INDEX_HR0, valueHr0);
+         setValue(INDEX_MIN1, valueMin1);
+         setValue(INDEX_MIN0, valueMin0);
 
          if(buffer[2] == ':'){
-            spiOutputHr = spiOutputHr | 0x2000;
+            set_dot(1);
+            printk(KERN_INFO "NixieChar: Output to Dot: 1\n");
+         } else {
+            set_dot(0);
+            printk(KERN_INFO "NixieChar: Output to Dot: 0\n");
          }
 
-         printk(KERN_INFO "NixieChar: Output to SPI: %x \t %x\n", spiOutputHr, spiOutputMin);
-         printk(KERN_INFO "NixieChar: Hr Output %x \t %x\n", (valueHr1 << 10), valueHr0);
-         printk(KERN_INFO "NixieChar: Hr Output %x \t %x\n", (valueMin1 << 10), valueMin0);
-
-         transfer_spi(spiOutputMin, 16);
-         transfer_spi(spiOutputHr, 16);
+         printk(KERN_INFO "NixieChar: %x%x\n", spi2, spi1);
+         
+         transfer_spi(spi1, 16);
+         transfer_spi(spi2, 16);
                  
    }
 
@@ -186,8 +196,41 @@ static int dev_release(struct inode *inodep, struct file *filep){
    return 0;
 }
 
-int digitToHex(char input, int start){
-    return 0x01 << (start - ((int)input - '0'));
+void setValue(int index, int value){
+    int *indexArray = NULL;
+
+    switch(index){
+        case INDEX_HR1:
+        indexArray = hr1Index;
+        break;
+
+        case INDEX_HR0:
+        indexArray = hr0Index;
+        break;
+
+        case INDEX_MIN1:
+        indexArray = min1Index;
+        break;
+
+        case INDEX_MIN0:
+        indexArray = min0Index;
+        break;
+
+        default:
+        indexArray = min0Index;
+        break;
+    }
+
+    int setValue = indexArray[value];
+
+    if((32 - setValue) > 16){
+        spi2 = spi2 | (0x01 << (32 - setValue - 16));  
+        printk(KERN_INFO "NixieChar: Output to %d[%d]: %x0000 (%d)\t%x%x\n", value, index, (0x01 << (32 - setValue - 16)), setValue, spi2, spi1);
+    } else {
+        spi1 = spi1 | (0x01 << (32 - setValue));  
+        printk(KERN_INFO "NixieChar: Output to %d[%d]: %x (%d)\t%x%x\n", value, index, (0x01 << (32 - setValue)), setValue, spi2, spi1);
+    }
+
 }
 
 
