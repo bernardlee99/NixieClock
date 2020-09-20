@@ -3,9 +3,9 @@ LDR_ADC_READ_AVG=0
 LDR_ADC_READ_FINAL=0
 LDR_ADC_READ_COUNT=999
 
-echo 0 > /sys/class/pwm/pwmchip2/export
-echo 1000000 > /sys/class/pwm/pwmchip2/pwm0/period
-echo 1 > /sys/class/pwm/pwmchip2/pwm0/enable
+PWM_WRITE=0
+INIT=1
+TRUE_STATE=1
 
 while true
 do
@@ -15,12 +15,13 @@ do
 
     if [[ $LDR_ADC_READ_COUNT -gt 1000 ]]
     then
-        PWM_WRITE=$(($LDR_ADC_READ_AVG*243/1000))
+        TARGET_PWM_WRITE=$(($LDR_ADC_READ_AVG*243/1000))
+        if [ $INIT -eq ]
         if [[ $PWM_WRITE -gt 1000000 ]]
         then
             $PWM_WRITE = 1000000
         fi
-        echo $PWM_WRITE > /sys/class/pwm/pwmchip2/pwm0/duty_cycle
+        echo $PWM_WRITE > /sys/class/pwm/pwmchip0/pwm0/duty_cycle
         LDR_ADC_READ_COUNT=0
         LDR_ADC_READ_AVG=0
     fi

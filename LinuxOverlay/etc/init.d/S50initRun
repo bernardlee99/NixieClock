@@ -1,22 +1,25 @@
 #!/bin/sh
 
 echo "GPIO & PWM Startup Test" 
-
 /boot-script/init-boot-led-gpio-test.sh
-
-/boot-script/init-boot-led.sh &
 
 modprobe nixie
 
 ifconfig wlan0 up
+/boot-script/init-boot-led-progress.sh 1
+
 wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_init.conf
+/boot-script/init-boot-led-progress.sh 2
+
 dhcpcd wlan0
-
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
+/boot-script/init-boot-led-progress.sh 3
 
-kill $(pidof  {exe} ash /usr/bin/boot-script/init-boot-led.sh)
+sleep 1
 
-/boot-script/init-boot-led-shut.sh
+BOOT_SUCCESS=1
+/boot-script/init-boot-led-progress.sh 4
 
+/boot-script/time-run.sh &
+/boot-script/adc-run.sh &
 echo "Init script completed!"
-

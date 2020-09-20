@@ -60,7 +60,7 @@ static struct file_operations fops =
  */
 static int __init nixiechar_init(void){
 
-   printk(KERN_INFO "NixieChar: Initializing PC3, PC8, & PC11 communication bus\n");
+   printk(KERN_INFO "NixieChar: Initializing PD14 & PD15 communication bus\n");
    init_gpio();
    
    printk(KERN_INFO "NixieChar: Initializing the NixieChar LKM\n");

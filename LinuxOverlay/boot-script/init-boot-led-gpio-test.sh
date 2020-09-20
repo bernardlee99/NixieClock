@@ -9,15 +9,13 @@ echo $INIT_LED_VALUE > /sys/class/pwm/pwmchip2/pwm0/duty_cycle
 echo 1 > /sys/class/pwm/pwmchip2/pwm0/enable
 
 while [ $INIT_BOOT_FLASH_COUNT -lt 3 ]
-do
-    
+do  
     if [[ $INIT_BOOT_UP == 1 ]]
     then
         INIT_LED_VALUE=$(($INIT_LED_VALUE+5000))
-    else 
+    else
         INIT_LED_VALUE=$(($INIT_LED_VALUE-5000))
     fi
-    
 
     if [[ $INIT_LED_VALUE -gt 999999 && $INIT_BOOT_UP == 1 ]]
     then
@@ -29,5 +27,7 @@ do
     fi
 
     echo $INIT_LED_VALUE > /sys/class/pwm/pwmchip2/pwm0/duty_cycle
-    
+
 done
+
+echo 1000000 > /sys/class/pwm/pwmchip2/pwm0/duty_cycle
