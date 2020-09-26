@@ -8,6 +8,11 @@ NixieTubeModularPCB/NixieModular_HEAD/Project\ Logs\ for\ NixieModular_HEAD
 NixieTubeModularPCB/NixieModular_HEAD/Project\ Outputs\ for\ NixieModular_HEAD
 NixieTubeModularPCB/NixieModular_HEAD/__Previews
 
+NixieTubeModularPCB/NixieModularMainPCB/History
+NixieTubeModularPCB/NixieModularMainPCB/Project\ Logs\ for\ NixieModularMainPCB
+NixieTubeModularPCB/NixieModularMainPCB/Project\ Outputs\ for\ NixieModularMainPCB
+NixieTubeModularPCB/NixieModularMainPCB/__Previews
+
 NixieLKM/*.o
 NixieLKM/*.ko
 NixieLKM/modules.order
