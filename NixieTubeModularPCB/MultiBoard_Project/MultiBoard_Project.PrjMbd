@@ -89,7 +89,7 @@ GenerateClassCluster=0
 DocumentUniqueId=f078092c-c818-4c7e-a6ed-ee79708306db
 
 [Document4]
-DocumentPath=Assembly2.MbaDoc
+DocumentPath=Assembly1.MbaDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -103,7 +103,24 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=a7ba3866-8ed8-4da0-b8ec-ddbce7cc29f7
+DocumentUniqueId=774f2a8c-ec8c-4fc1-8d29-4f3477612b46
+
+[Document5]
+DocumentPath=MultiBoard_Project.BomDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
 
 [OutputGroup1]
 Name=Netlist Outputs
