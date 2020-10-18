@@ -1,0 +1,1 @@
+cmd_drivers/staging/ws2812b/ws2812b.ko := /home/bbd/Desktop/NUC970_Buildroot/output/host/usr/bin/arm-nuvoton-linux-uclibcgnueabi-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o drivers/staging/ws2812b/ws2812b.ko drivers/staging/ws2812b/ws2812b.o drivers/staging/ws2812b/ws2812b.mod.o

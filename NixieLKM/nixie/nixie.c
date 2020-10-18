@@ -4,6 +4,11 @@
 #include <linux/kernel.h>         
 #include <linux/fs.h>             
 #include <linux/uaccess.h>          
+
+#include <linux/interrupt.h>
+#include <linux/hrtimer.h>
+#include <linux/sched.h>
+
 #define  DEVICE_NAME "nixieChar"    
 #define  CLASS_NAME  "nixie"
 
@@ -17,6 +22,7 @@ MODULE_VERSION("0.1");
 static int    majorNumber;                  
 static char   message[256] = {0};           
 static short  size_of_message;              
+static short  callback_count;
 static int    numberOpens = 0;              
 static struct class*  nixiecharClass  = NULL; 
 static struct device* nixiecharDevice = NULL; 
