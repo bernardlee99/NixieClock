@@ -32,7 +32,8 @@ static struct device* lightingModDevice = NULL;
 
 #define STATE_OFF 0
 #define STATE_BOOT_UP 1
-#define STATE_BOOT_SUCCESS 2
+#define STATE_BOOT_UP_2 2
+#define STATE_BOOT_SUCCESS 3
 #define STATE_BOOT_FAILED -1
 
 static int state_of_light = STATE_BOOT_UP;
@@ -114,6 +115,7 @@ static void __exit lightingMod_exit(void){
    class_destroy(lightingModClass);                             // remove the device class
    unregister_chrdev(majorNumber, DEVICE_NAME);             // unregister the major number
    close_gpio();
+   timer_cleanup();
    printk(KERN_INFO "LightingMod: Goodbye from the LKM!\n");
 }
 
@@ -166,20 +168,30 @@ static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, lof
 
    if(buffer[0] == 49){
       state_of_light = STATE_BOOT_UP;
+      setAll(0,0,0);
       printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
    }  else if(buffer[0] == 50){
-      state_of_light = STATE_BOOT_SUCCESS;
+      setAll(0,0,0);
+      state_of_light = STATE_BOOT_UP_2;
       printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
    } else if(buffer[0] == 51){
+      setAll(0,0,0);
+      state_of_light = STATE_BOOT_SUCCESS;
+      printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
+   } else if(buffer[0] == 52){
+      setAll(0,0,0);
       state_of_light = STATE_BOOT_FAILED;
       printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
    } else {
+      setAll(0,0,0);
       state_of_light = STATE_OFF;
       printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
    }
 
    return len;
+
 }
+  
 
 /** @brief The device release function that is called whenever the device is closed/released by
  *  the userspace program
@@ -193,7 +205,7 @@ static int dev_release(struct inode *inodep, struct file *filep){
 
 static void timer_init(void)
 {
-    kt_period = ktime_set(0, 12500000); //seconds,nanoseconds
+    kt_period = ktime_set(0, 30000000); //seconds,nanoseconds
     hrtimer_init (& htimer, CLOCK_REALTIME, HRTIMER_MODE_REL);
     htimer.function = timer_function;
     hrtimer_start(& htimer, kt_period, HRTIMER_MODE_REL);
@@ -208,6 +220,8 @@ static enum hrtimer_restart timer_function(struct hrtimer * timer)
 {
     if(state_of_light == STATE_BOOT_UP){
        loading2();
+    } else if(state_of_light == STATE_BOOT_UP_2){
+       loading();
     } else if(state_of_light == STATE_BOOT_SUCCESS){
        setAll(0,0,255);
     } else if(state_of_light == STATE_BOOT_FAILED){

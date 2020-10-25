@@ -1,7 +1,7 @@
 #include <linux/gpio.h>
 #include <linux/delay.h>
 
-struct cRGB { uint8_t b; uint8_t g; uint8_t r; };
+struct cRGB { int b; int g; int r; };
 
 #define HIGH 1
 #define LOW 0

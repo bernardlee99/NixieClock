@@ -13,7 +13,6 @@ void SPI_write(int c){
     c <<= 1;
     
     gpio_direction_output(PG7, HIGH);
-    ndelay(850);
     gpio_direction_output(PG7, LOW);
   }
   
@@ -52,7 +51,7 @@ void set_led_brightness(struct cRGB *ledarray, int leds, int brightness){
 }
 
 void set_led(struct cRGB *ledarray, int leds){
-  set_led_brightness(ledarray,leds,255);
+  set_led_brightness(ledarray,leds,150);
 }
 
 
