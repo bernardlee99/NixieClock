@@ -1,7 +1,8 @@
 #!/bin/sh
 
 echo "GPIO & PWM Startup Test" 
-/boot-script/init-boot-led-gpio-test.sh
+modprobe sk9822
+echo 1 > /dev/sk9822
 
 modprobe nixie
 
@@ -23,3 +24,5 @@ BOOT_SUCCESS=1
 /boot-script/time-run.sh &
 /boot-script/adc-run.sh &
 echo "Init script completed!"
+
+echo 3 > /dev/sk9822

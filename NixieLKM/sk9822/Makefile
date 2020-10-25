@@ -1,4 +1,4 @@
-obj-m += ws2812b.o
+obj-m += sk9822.o
 
 all:
 	make ARCH=arm CROSS_COMPILE=/home/bbd/Desktop/NUC970_Buildroot/output/host/usr/bin/arm-linux- -C /home/bbd/Desktop/NUC970_Buildroot/output/build/linux-master SUBDIRS=$(PWD) modules

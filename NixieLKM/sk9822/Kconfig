@@ -1,0 +1,4 @@
+config SK9822
+	tristate "SK9822 Lighting Module"
+	---help---
+	  Alexa, Glow in Blue!

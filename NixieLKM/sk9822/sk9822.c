@@ -12,7 +12,7 @@
 static struct hrtimer htimer;
 static ktime_t kt_period;
 
-#define  DEVICE_NAME "WS2812B Controller"    
+#define  DEVICE_NAME "sk9822"    
 #define  CLASS_NAME  "WS2812B"
 
 #include "lightGPIO.c"
@@ -29,6 +29,13 @@ static short  callback_count;
 static int    numberOpens = 0;              
 static struct class*  lightingModClass  = NULL; 
 static struct device* lightingModDevice = NULL; 
+
+#define STATE_OFF 0
+#define STATE_BOOT_UP 1
+#define STATE_BOOT_SUCCESS 2
+#define STATE_BOOT_FAILED -1
+
+static int state_of_light = STATE_BOOT_UP;
 
 
 static void timer_init(void);
@@ -60,7 +67,7 @@ static struct file_operations fops =
  */
 static int __init lightingMod_init(void){
 
-   printk(KERN_INFO "LightingMod: Initializing PG6 communication bus\n");
+   printk(KERN_INFO "LightingMod: Initializing PG6 and PG7 communication bus\n");
    init_gpio();
    printk(KERN_INFO "LightingMod: Initializing the LightingMod LKM\n");
 
@@ -154,7 +161,23 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
  */
 static ssize_t dev_write(struct file *filep, const char *buffer, size_t len, loff_t *offset){   
    size_of_message = strlen(message);             
-   printk(KERN_INFO "LightingMod: Received %zu characters from the user\n", len);
+   printk(KERN_INFO "LightingMod: Received %zu characters from the user: %d %d\n", len, buffer[0], buffer[1]);
+
+
+   if(buffer[0] == 49){
+      state_of_light = STATE_BOOT_UP;
+      printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
+   }  else if(buffer[0] == 50){
+      state_of_light = STATE_BOOT_SUCCESS;
+      printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
+   } else if(buffer[0] == 51){
+      state_of_light = STATE_BOOT_FAILED;
+      printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
+   } else {
+      state_of_light = STATE_OFF;
+      printk(KERN_INFO "LightingMod: State Change: Code %d\n", state_of_light);
+   }
+
    return len;
 }
 
@@ -170,7 +193,7 @@ static int dev_release(struct inode *inodep, struct file *filep){
 
 static void timer_init(void)
 {
-    kt_period = ktime_set(3, 104167); //seconds,nanoseconds
+    kt_period = ktime_set(0, 12500000); //seconds,nanoseconds
     hrtimer_init (& htimer, CLOCK_REALTIME, HRTIMER_MODE_REL);
     htimer.function = timer_function;
     hrtimer_start(& htimer, kt_period, HRTIMER_MODE_REL);
@@ -183,8 +206,16 @@ static void timer_cleanup(void)
 
 static enum hrtimer_restart timer_function(struct hrtimer * timer)
 {
-    data_out(0xFF, 0x00, 0xFF);
-    printk(KERN_INFO "LightingMod: Write Successful\n");
+    if(state_of_light == STATE_BOOT_UP){
+       loading2();
+    } else if(state_of_light == STATE_BOOT_SUCCESS){
+       setAll(0,0,255);
+    } else if(state_of_light == STATE_BOOT_FAILED){
+       pulsing();
+    } else {
+       setAll(0,0,0);
+    }
+    
     hrtimer_forward_now(timer, kt_period);
 
     return HRTIMER_RESTART;

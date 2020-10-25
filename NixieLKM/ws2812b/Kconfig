@@ -1,5 +1,0 @@
-config WS2812B
-	tristate "Lighting Module"
-	---help---
-	  Alexa, Glow in Blue!
-

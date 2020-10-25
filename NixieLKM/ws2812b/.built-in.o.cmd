@@ -1,1 +1,0 @@
-cmd_drivers/staging/ws2812b/built-in.o :=  rm -f drivers/staging/ws2812b/built-in.o; /home/bbd/Desktop/NUC970_Buildroot/output/host/usr/bin/arm-nuvoton-linux-uclibcgnueabi-ar rcsD drivers/staging/ws2812b/built-in.o
