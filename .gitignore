@@ -16,7 +16,14 @@ NixieTubeModularPCB/NixieModularMainPCB/__Previews
 
 NixieTubeModularPCB/MultiBoard_Project/History
 
-NixieLKM/*.o
-NixieLKM/*.ko
-NixieLKM/modules.order
-NixieLKM/*.mod.*
+NixieLKM/nixie/*.o
+NixieLKM/nixie/*.ko
+NixieLKM/nixie/modules.order
+NixieLKM/nixie/*.mod.*
+NixieLKM/nixie/*.cmd
+
+NixieLKM/sk9822/*.o
+NixieLKM/sk9822/*.ko
+NixieLKM/sk9822/modules.order
+NixieLKM/sk9822/*.mod.*
+NixieLKM/sk9822/*.cmd
