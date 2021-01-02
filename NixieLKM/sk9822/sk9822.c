@@ -36,7 +36,7 @@ static struct device* lightingModDevice = NULL;
 #define STATE_BOOT_SUCCESS 3
 #define STATE_BOOT_FAILED -1
 
-static int state_of_light = STATE_BOOT_UP;
+static int state_of_light = STATE_BOOT_UP_2;
 
 
 static void timer_init(void);
@@ -223,7 +223,7 @@ static enum hrtimer_restart timer_function(struct hrtimer * timer)
     } else if(state_of_light == STATE_BOOT_UP_2){
        loading();
     } else if(state_of_light == STATE_BOOT_SUCCESS){
-       setAll(0,0,255);
+       setAll(255,128,0);
     } else if(state_of_light == STATE_BOOT_FAILED){
        pulsing();
     } else {

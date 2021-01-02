@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Nixie Driver
+echo "Initializing SK9822 Driver"
+modprobe sk9822

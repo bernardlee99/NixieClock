@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# Nixie Driver
+echo "Initializing Nixie Driver"
+modprobe nixie
+nixie_state=0
+
+# Checking response of Nixie
+nixie_ret=$(lsmod | grep nixie)
+if [ ! -z "$nixie_ret" -a "$nixie_ret" != " " ]; then
+    nixie_state=1
+else
+    nixie_state=-1
+    echo "oops"
+fi
+
+# Network Connection
+echo "Initializing Network"
+ifconfig wlan0 up
+network_state=0
+
+# Checking wlan device state
+net_ret=$(ifconfig | grep wlan0)
+if [ ! -z "$net_ret" -a "$net_ret" != " " ]; then
+    network_state=1
+else
+    network_state=-1
+    echo "oops"
+fi
+
+# Checking Connection with Wi-Fi
+wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_init.conf
+
+# Checking DHCP Status
+dhcpcd wlan0
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
+echo 0 > /dev/sk9822
+
+sleep 1
+
+echo "Init script completed!"
+
+if [ $nixie_state == -1 ]; then
+    echo 4 > /dev/sk9822
+elif [ $network_state == -1 ]; then
+    echo 4 > /dev/sk9822
+else
+    echo 3 > /dev/sk9822
+fi
