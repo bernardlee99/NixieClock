@@ -168,12 +168,48 @@ void pulsing(void){
   
 }
 
+void fadeIn(int r, int g, int b){
+    int i = 0, j = 0;
+
+    for(i = 0; i < LENGTH; i++){
+        led[i].r = 0;
+        led[i].g = 0;
+        led[i].b = 0;
+    }
+    for(j = 0; j < r; j++){
+        for(i = 0; i < LENGTH; i++){
+            if(led[i].r < r) led[i].r++;
+        }
+        // printk(KERN_INFO "LightingMod: *R: %d, G: %d, B: %d\n", led[0].r, led[0].g, led[0].b);
+        set_led(led,LENGTH);   
+        mdelay(20);
+    }
+    for(j = 0; j < g; j++){
+        for(i = 0; i < LENGTH; i++){
+            if(led[i].g < g) led[i].g++;
+        }
+        // printk(KERN_INFO "LightingMod: R: %d, *G: %d, B: %d\n", led[0].r, led[0].g, led[0].b);
+        set_led(led,LENGTH);   
+        mdelay(20);
+    }
+    for(j = 0; j < b; j++){
+        for(i = 0; i < LENGTH; i++){
+            if(led[i].b < b) led[i].b++;
+        }
+        // printk(KERN_INFO "LightingMod: R: %d, G: %d, *B: %d\n", led[0].r, led[0].g, led[0].b);
+        set_led(led,LENGTH);   
+        mdelay(20);
+    }
+
+}
+
 void setAll(int r, int g, int b){
     int i = 0;
+    
     for(i = 0; i < LENGTH; i++){
         led[i].r = r;
         led[i].g = g;
         led[i].b = b;
     }
-    set_led(led,LENGTH);
+    set_led(led,LENGTH);    
 }
