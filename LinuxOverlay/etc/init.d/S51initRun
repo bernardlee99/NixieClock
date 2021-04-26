@@ -15,18 +15,16 @@ else
 fi
 
 # Setup PWM for Nixie Dot
-echo 0 > /sys/class/pwm/pwmchip2/device/pwm/pwmchip2/export
-echo 1 > /sys/class/pwm/pwmchip2/device/pwm/pwmchip2/pwm0/enable
-echo 0 > /sys/class/pwm/pwmchip2/device/pwm/pwmchip2/pwm0/duty_cycle
-echo 100000 > /sys/class/pwm/pwmchip2/device/pwm/pwmchip2/pwm0/period
+echo 0 > /sys/class/pwm/pwmchip2/export
+echo 1 > /sys/class/pwm/pwmchip2/pwm0/enable
+echo 0 > /sys/class/pwm/pwmchip2/pwm0/duty_cycle
+echo 100000 > /sys/class/pwm/pwmchip2/pwm0/period
 
-
-# echo 0 > /sys/class/pwm/pwmchip3/device/pwm/pwmchip3/export
-# echo 0 > /sys/class/pwm/pwmchip3/device/pwm/pwmchip3/pwm0/enable
-# echo 0 > /sys/class/pwm/pwmchip3/device/pwm/pwmchip3/pwm0/duty_cycle
-# echo 100000 > /sys/class/pwm/pwmchip3/device/pwm/pwmchip3/pwm0/period
-
-
+# Setup PWM for Nixie Digit
+echo 0 > /sys/class/pwm/pwmchip3/export
+echo 1 > /sys/class/pwm/pwmchip3/pwm0/enable
+echo 0 > /sys/class/pwm/pwmchip3/pwm0/duty_cycle
+echo 100000 > /sys/class/pwm/pwmchip3/pwm0/period
 
 # Network Connection
 echo "Initializing Network"
@@ -62,5 +60,10 @@ elif [ $network_state == -1 ]; then
 else
     echo 3 > /dev/sk9822
 fi
+
+mkdir /data
+mount -t yaffs2 -o "inband-tags" /dev/mtdblock2 /data
+
+sh /rtl8723bs_bt/start_bt.sh
 
 nixieChar &
